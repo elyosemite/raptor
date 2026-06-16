@@ -1,6 +1,6 @@
 use serde::Deserialize;
 
-#[derive(Deserialize, Debug)]
+#[derive(Debug, Deserialize)]
 pub struct Config {
     pub listen: String,
     pub backends: Vec<String>,
