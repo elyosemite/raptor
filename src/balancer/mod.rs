@@ -9,7 +9,7 @@ impl Balancer {
     pub fn new(backends: Vec<String>) -> Self {
         Self {
             backends,
-            inde: 0,
+            index: 0,
         }
     }
 
