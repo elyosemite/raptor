@@ -9,7 +9,7 @@ async fn main() -> anyhow::Result<()> {
     tracing_subscriber::fmt::init();
 
     let config = config::load()?;
-    let balancer = Balancer::new(config.backends);
+    let balancer = Balancer::new(config.backends)?;
 
     server::run(config.listen, balancer).await
 }
