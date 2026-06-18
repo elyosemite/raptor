@@ -211,6 +211,10 @@ Possible additions:
 * Kubernetes integration
 * Observability stack
 
+See `ROADMAP.md` for the current, ordered implementation backlog (what to
+build next, and why). It is the source of truth for near-term priority,
+more granular than the version milestones above.
+
 ---
 
 # Things NOT to build yet
@@ -251,6 +255,8 @@ When working on this repository:
 5. Keep backwards compatibility when possible.
 6. Add tests for important behavior.
 7. Consider performance implications.
+8. When picking what to work on next, follow the order in `ROADMAP.md`
+   unless the user directs otherwise.
 
 The priority order is:
 
