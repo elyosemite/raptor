@@ -13,3 +13,6 @@ pub fn load() -> anyhow::Result<Config> {
 
     Ok(config)
 }
+
+#[cfg(test)]
+mod tests;
