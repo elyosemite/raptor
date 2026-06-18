@@ -1,26 +1,24 @@
 mod round_robin;
 
+use round_robin::RoundRobin;
+
 pub struct Balancer {
     backends: Vec<String>,
-    index: usize,
+    strategy: RoundRobin,
 }
 
 impl Balancer {
     pub fn new(backends: Vec<String>) -> Self {
         Self {
             backends,
-            index: 0,
+            strategy: RoundRobin::new(),
         }
     }
 
     pub fn next(&mut self) -> String {
-        let backend =
-            self.backends[self.index].clone();
-        
-        self.index =
-            (self.index + 1)
-            % self.backends.len();
-        
-        backend
+        let index =
+            self.strategy.next(self.backends.len());
+
+        self.backends[index].clone()
     }
 }
