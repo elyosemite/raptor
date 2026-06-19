@@ -8,7 +8,7 @@ use balancer::Balancer;
 async fn main() -> anyhow::Result<()> {
     tracing_subscriber::fmt::init();
 
-    let config = config::load()?;
+    let config = config::load("raptor.toml")?;
     let balancer = Balancer::new(config.backends)?;
 
     server::run(config.listen, balancer).await
