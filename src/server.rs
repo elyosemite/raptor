@@ -4,19 +4,18 @@ use crate::balancer::Balancer;
 use tokio::net::TcpListener;
 
 pub async fn run(
-    address: String,
+    listener: TcpListener,
     mut balancer: Balancer
 ) -> anyhow::Result<()> {
-    let listener =
-        TcpListener::bind(address).await?;
-    
     loop {
         let (client, _) =
             listener.accept().await?;
         
         let backend =
             balancer.next();
-        
+
+        tracing::info!(%backend, "routing connection");
+
         tokio::spawn(async move {
             if let Err(e) =
                 proxy::handle(

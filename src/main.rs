@@ -1,8 +1,8 @@
-mod balancer;
-mod config;
-mod server;
+use raptor::balancer::Balancer;
+use raptor::config;
+use raptor::server;
 
-use balancer::Balancer;
+use tokio::net::TcpListener;
 
 const DEFAULT_CONFIG_PATH: &str = "raptor.toml";
 
@@ -21,8 +21,9 @@ async fn main() -> anyhow::Result<()> {
 
     let config = config::load(&path)?;
     let balancer = Balancer::new(config.backends)?;
+    let listener = TcpListener::bind(config.listen).await?;
 
-    server::run(config.listen, balancer).await
+    server::run(listener, balancer).await
 }
 
 #[cfg(test)]
