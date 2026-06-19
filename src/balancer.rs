@@ -20,8 +20,7 @@ impl Balancer {
     }
 
     pub fn next(&mut self) -> String {
-        let index =
-            self.strategy.next(self.backends.len());
+        let index = self.strategy.next(self.backends.len());
 
         self.backends[index].clone()
     }

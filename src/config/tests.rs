@@ -22,7 +22,6 @@ backends = [
         toml::from_str(content)
         .unwrap();
 
-
     assert_eq!(
         cfg.listen,
         "0.0.0.0:8080"
